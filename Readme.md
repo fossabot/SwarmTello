@@ -11,7 +11,8 @@ An attempt to swarm DJI Tello drones.
 ### Enable Emulate terminal in output console
 This is necessary for capturing `ctrl + c` signal.  
 Click the `Edit Configurations` button.  
-![img0.png](assets/img0.png)  
+![img0.png](assets/img0.png) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsunnyqa233%2FSwarmTello.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsunnyqa233%2FSwarmTello?ref=badge_shield)
+ 
 Click the `Edit confuguration template...` button.  
 ![img1.png](assets/img1.png)  
 Check the box `Emulate terminal in output console`.  
@@ -28,3 +29,7 @@ Time Format: `yyyy-MM-dd HH:mm:ss,SSS`
 #### Result
 You should be able to see highlight in logs.  
 ![img4.png](assets/img4.png)  
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsunnyqa233%2FSwarmTello.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsunnyqa233%2FSwarmTello?ref=badge_large)
