@@ -56,9 +56,9 @@ class Server:
         # Server info
         self.__ip = socket.gethostbyname(socket.gethostname())
         # Server indicator
-        self.new = {}
+        self.new = False
         # Data storage
-        self.data = {}
+        self.__data = []
         # Setup socket
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # IPV4, UDP
         self.__sock.setblocking(False)  # Timeout = 0
@@ -99,13 +99,9 @@ class Server:
                     self.__log.info(f"Received Datagram. '{datagram}'")
                     # Filter
                     if not self.__filtrate:
-                        ip = datagram[1][0]
-                        self.new[ip] = True
-                        # Initiate storage for ip if necessary
-                        if ip not in self.data.keys():
-                            self.data[ip] = []
+                        self.new = True
                         # Save datagram
-                        self.data[ip].append(
+                        self.__data.append(
                             Datagram(datagram, self.__decode)
                         )
                     else:
@@ -114,25 +110,21 @@ class Server:
                         elif len(datagram[0]) == 0:
                             self.__log.warning(f"Dropped Datagram. Reason:'Blank Datagram' Raw:'{datagram}'")
                         else:
-                            ip = datagram[1][0]
-                            self.new[ip] = True
-                            # Initiate storage for ip if necessary
-                            if ip not in self.data.keys():
-                                self.data[ip] = []
+                            self.new = True
                             # Save datagram
-                            self.data[ip].append(
+                            self.__data.append(
                                 Datagram(datagram, self.__decode)
                             )
 
-    def read(self, ip: str) -> Datagram:
+    def read(self) -> Datagram:
         """
-        Read the datagram that sent from specific ip, will block until datagram arrive.
+        Read the datagram that received, will block until datagram arrive.
         """
         while True:
             try:
-                if len(self.data[ip]) == 1:  # Reset indicator
-                    self.new[ip] = False
-                return self.data[ip].pop()
+                if len(self.__data) == 1:  # Reset indicator
+                    self.new = False
+                return self.__data.pop()
             except (KeyError, IndexError):
                 _public.sleep(0.2)
 

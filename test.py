@@ -99,16 +99,20 @@ thread_b2a.join()
 
 t_list = []
 
-a2b_amount = len(server_b.data[socket.gethostbyname(socket.gethostname())])
+a2b_amount = 0
 a2b_latency = 0.0
-for item in server_b.data[socket.gethostbyname(socket.gethostname())]:
+while server_b.new:
+    item = server_b.read()
+    a2b_amount += 1
     a2b_latency += item.timestamp - float(item.text)
     t_list.append(item.text)
 a2b_latency = a2b_latency / a2b_amount
 
-b2a_amount = len(server_b.data[socket.gethostbyname(socket.gethostname())])
+b2a_amount = 0
 b2a_latency = 0.0
-for item in server_a.data[socket.gethostbyname(socket.gethostname())]:
+while server_a.new:
+    item = server_a.read()
+    b2a_amount += 1
     b2a_latency += item.timestamp - float(item.text)
     t_list.append(item.text)
 b2a_latency = b2a_latency / b2a_amount
