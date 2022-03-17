@@ -1,5 +1,5 @@
 # SwarmTello
-A python program written to swarm DJI Tello drones.  
+An attempt to swarm DJI Tello drones.  
 
 ## Env
 ### Python Version
@@ -16,7 +16,7 @@ Click the `Edit confuguration template...` button.
 ![img1.png](assets/img1.png)  
 Check the box `Emulate terminal in output console`.  
 ![img2.png](assets/img2.png)  
-### Enable log highlighting
+### Enable log highlighting(Optional)
 #### Config
 Search `Log Highlighting` in settings.  
 Add a log format named `SwarmTello`.  
